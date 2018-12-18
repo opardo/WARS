@@ -96,7 +96,7 @@ def build_movie_features(dataset, movie_features):
     return(movie_feature_matrix)
 
 def fit_LightFM_model(interactions, weights, user_feature_matrix, movie_feature_matrix, no_components=40, loss='warp'):
-    model = LightFM(no_components=no_components, loss=loss)
+    model = LightFM(no_components=no_components, loss=loss, random_state=2019)
     model.fit(
         interactions=interactions,
         sample_weight=weights,
