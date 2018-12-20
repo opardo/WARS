@@ -39,7 +39,7 @@ def get_dataset_performance(
         test_movie_features = None
 
     model = fit_LightFM_model(train_interactions, train_weights, train_user_features, train_movie_features)
-    test_LightFM_model(model, test_interactions, train_interactions, test_user_features, test_movie_features, k=5)
+    return test_LightFM_model(model, test_interactions, train_interactions, test_user_features, test_movie_features, k=5)
 
 def LightFM_interactions(df_frac, df_ratings, user_features=None, movie_features=None):
     umr = umr_arrays(df_frac)
@@ -133,6 +133,9 @@ def test_LightFM_model(model, test_interactions, train_interactions, user_featur
         num_threads=2
     ).mean()
     print('Model')
-    print('Precision at k=',str(k),': ', round(test_precision, 3))
-    print('Recall at k=',str(k),': ', round(test_recall, 3))
-    print('AUC:', round(test_auc, 3))
+    print('Precision at k=', str(k), ': ', round(test_precision, 3), sep='')
+    print('Recall at k=', str(k) + ': ', round(test_recall, 3), sep='')
+    print('AUC: ', round(test_auc, 3), sep='')
+    return({'precision': round(test_precision, 3),
+            'recall': round(test_recall, 3),
+            'auc': round(test_auc, 3)})
