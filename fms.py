@@ -39,7 +39,8 @@ def get_dataset_performance(
         test_movie_features = None
 
     model = fit_LightFM_model(train_interactions, train_weights, train_user_features, train_movie_features)
-    return test_LightFM_model(model, test_interactions, train_interactions, test_user_features, test_movie_features, k=5)
+    test = test_LightFM_model(model, test_interactions, train_interactions, test_user_features, test_movie_features, k=5)
+    return(test)
 
 def LightFM_interactions(df_frac, df_ratings, user_features=None, movie_features=None):
     umr = umr_arrays(df_frac)
